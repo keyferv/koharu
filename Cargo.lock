@@ -4868,6 +4868,7 @@ dependencies = [
  "tokio-rayon",
  "toml",
  "tracing",
+ "url",
  "windows",
 ]
 
