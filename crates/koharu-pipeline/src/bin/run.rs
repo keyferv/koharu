@@ -57,6 +57,9 @@ struct Arguments {
 
     #[arg(long)]
     overwrite: bool,
+
+    #[arg(long)]
+    limit: Option<usize>,
 }
 
 struct SessionCommitter<'a>(&'a mut Session);
@@ -191,6 +194,9 @@ async fn main() -> Result<()> {
             })
             .collect();
         files.sort();
+        if let Some(limit) = arguments.limit {
+            files.truncate(limit);
+        }
 
         for file in files {
             let file_name = file.file_name().expect("file has name").to_os_string();
